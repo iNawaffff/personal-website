@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block title %}Blog{% endblock %}
+
+{% block content %}
+<div class="blog-container">
+    <h1>Blog Posts</h1>
+
+    {% if posts %}
+        {% for post in posts %}
+            <article class="blog-post">
+                <h2>{{ post.title }}</h2>
+                <div class="post-meta">
+                    Posted on {{ post.created_at.strftime('%B %d, %Y') }}
+                </div>
+                <div class="post-excerpt">
+                    {{ post.content[:200] }}...
+                </div>
+                <a href="{{ url_for('post', slug=post.slug) }}" class="read-more">Read More</a>
+            </article>
+        {% endfor %}
+    {% else %}
+        <p>No blog posts yet!</p>
+    {% endif %}
+</div>
+{% endblock %}
