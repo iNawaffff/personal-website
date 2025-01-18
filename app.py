@@ -4,6 +4,7 @@ from models import db, BlogPost, Activity, Project
 from datetime import datetime, timedelta
 from config import Config
 
+
 # Initialize Flask application
 app = Flask(__name__)
 app.config.from_object(Config)
