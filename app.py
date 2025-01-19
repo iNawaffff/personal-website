@@ -53,8 +53,13 @@ def home():
     """
     Home page route - displays profile, stats, activity graph, and recent posts.
     """
-    # Get 5 most recent blog posts
-    recent_posts = BlogPost.query.order_by(BlogPost.created_at.desc()).limit(5).all()
+    try:
+        recent_posts = BlogPost.query.order_by(BlogPost.created_at.desc()).limit(5).all()
+    except Exception as e:
+        # Handle potential errors (e.g., database connection issues)
+        print(f"Error fetching recent posts: {e}")
+        recent_posts = []
+
     # Get activity statistics and graph data
     activity_info = get_activity_stats()
 
