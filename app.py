@@ -14,38 +14,48 @@ db.init_app(app)
 def get_activity_stats():
     """
     Calculates statistics for the activity graph and stats display.
-    Returns both general stats (total days, projects, posts) and 
-    daily activity data for the graph.
     """
-    # Get date range for the past year
-    end_date = datetime.now()
-    start_date = end_date - timedelta(days=365)
+    try:
+        # Get date range for the past year
+        end_date = datetime.now()
+        start_date = end_date - timedelta(days=365)
 
-    # Calculate totals for stats display
-    total_days = Activity.query.filter_by(type='learning_day').count()
-    total_projects = Activity.query.filter_by(type='project').count()
-    total_posts = BlogPost.query.count()
+        # Calculate totals for stats display (with default values)
+        total_days = Activity.query.filter_by(type='learning_day').count() or 0
+        total_projects = Activity.query.filter_by(type='project').count() or 0
+        total_posts = BlogPost.query.count() or 0
 
-    # Get all activities within the last year
-    activities = Activity.query.filter(
-        Activity.date.between(start_date, end_date)
-    ).all()
+        # Get all activities within the last year
+        activities = Activity.query.filter(
+            Activity.date.between(start_date, end_date)
+        ).all()
 
-    # Create a dictionary of date -> activity count
-    activity_data = {}
-    for activity in activities:
-        date_key = activity.date.strftime('%Y-%m-%d')
-        # Increment count for each day (or initialize to 1)
-        activity_data[date_key] = activity_data.get(date_key, 0) + 1
+        # Create a dictionary of date -> activity count
+        activity_data = {}
+        for activity in activities:
+            date_key = activity.date.strftime('%Y-%m-%d')
+            activity_data[date_key] = activity_data.get(date_key, 0) + 1
 
-    return {
-        'stats': {
-            'days': total_days,
-            'projects': total_projects,
-            'posts': total_posts
-        },
-        'activity_data': activity_data
-    }
+        return {
+            'stats': {
+                'days': total_days,
+                'projects': total_projects,
+                'posts': total_posts
+            },
+            'activity_data': activity_data
+        }
+    except Exception as e:
+        # Return default values if there's an error
+        return {
+            'stats': {
+                'days': 0,
+                'projects': 0,
+                'posts': 0
+            },
+            'activity_data': {}
+        }
+
+
 
 
 @app.route('/')
@@ -75,7 +85,12 @@ def blog():
     posts = BlogPost.query.order_by(BlogPost.created_at.desc()).all()
     return render_template('blog.html', posts=posts)
 
-@app.route('/projects')
+@app.route('/post/<slug>')
+def post(slug):
+    post = BlogPost.query.filter_by(slug=slug).first_or_404()
+    return render_template('post.html', post=post)
+
+
 @app.route('/projects')
 def projects():
     projects = Project.query.order_by(Project.created_at.desc()).all()
