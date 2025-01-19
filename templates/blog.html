@@ -4,23 +4,34 @@
 
 {% block content %}
 <div class="blog-container">
-    <h1>Blog Posts</h1>
+    <header class="blog-posts-header">
+        <h1>Blog Posts</h1>
+        <p>Thoughts, tutorials, and updates about my journey.</p>
+    </header>
 
     {% if posts %}
         {% for post in posts %}
-            <article class="blog-post">
-                <h2>{{ post.title }}</h2>
-                <div class="post-meta">
+            <article class="blog-post-item">
+                <a href="{{ url_for('post', slug=post.slug) }}" class="blog-post-title">
+                    {{ post.title }}
+                </a>
+                <div class="blog-post-meta">
                     Posted on {{ post.created_at.strftime('%B %d, %Y') }}
                 </div>
-                <div class="post-excerpt">
-                    {{ post.content[:200] }}...
+                <div class="blog-post-excerpt">
+                    {{ post.content[:200] }}{% if post.content|length > 200 %}...{% endif %}
                 </div>
-                <a href="{{ url_for('post', slug=post.slug) }}" class="read-more">Read More</a>
+                <a href="{{ url_for('post', slug=post.slug) }}" class="read-more">
+                    Read More →
+                </a>
             </article>
         {% endfor %}
     {% else %}
-        <p>No blog posts yet!</p>
+        <p class="no-posts">No blog posts yet. Check back soon!</p>
     {% endif %}
 </div>
 {% endblock %}
+
+
+
+

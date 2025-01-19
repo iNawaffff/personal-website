@@ -561,3 +561,381 @@ nav {
 .project-link:hover {
     opacity: 0.8;
 }
+
+/* ====================
+   Blog listing page styles
+   ==================== */
+.blog-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.blog-posts-header {
+    margin-bottom: 4rem;
+}
+
+.blog-posts-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    color: var(--text-color);
+}
+
+.blog-post-item {
+    padding: 2rem;
+    margin-bottom: 2rem;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+    background: rgba(255, 165, 0, 0.05);
+}
+
+.blog-post-item:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 165, 0, 0.1);
+}
+
+.blog-post-title {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    text-decoration: none;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+.blog-post-meta {
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.blog-post-excerpt {
+    color: var(--text-color);
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.read-more {
+    display: inline-flex;
+    align-items: center;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.read-more:hover {
+    opacity: 0.8;
+}
+
+/* ====================
+   Single Post Page Styles
+   ==================== */
+.single-post {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.post-header {
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.post-header h1 {
+    font-size: 2.5rem;
+    margin: 2rem 0;
+    background: linear-gradient(to right, var(--accent-color), var(--text-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.post-meta {
+    color: var(--secondary-text);
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.back-link {
+    display: inline-block;
+    color: var(--accent-color);
+    text-decoration: none;
+    margin-bottom: 2rem;
+    transition: opacity 0.3s ease;
+}
+
+.back-link:hover {
+    opacity: 0.8;
+}
+
+.post-content {
+    line-height: 1.8;
+    margin-bottom: 4rem;
+    font-size: 1.1rem;
+}
+
+.post-content p {
+    margin-bottom: 1.5rem;
+}
+
+.post-footer {
+    border-top: 1px solid var(--border-color);
+    padding-top: 2rem;
+    margin-top: 4rem;
+    text-align: center;
+}
+
+/* Adding nice spacing for different content types */
+.post-content h2 {
+    font-size: 1.8rem;
+    margin: 3rem 0 1.5rem;
+}
+
+.post-content h3 {
+    font-size: 1.4rem;
+    margin: 2rem 0 1rem;
+}
+
+.post-content ul, .post-content ol {
+    margin: 1.5rem 0;
+    padding-left: 2rem;
+}
+
+.post-content li {
+    margin-bottom: 0.5rem;
+}
+
+.post-content code {
+    background: rgba(255, 165, 0, 0.1);
+    padding: 0.2rem 0.4rem;
+    border-radius: 4px;
+    font-family: 'Fira Code', monospace;
+}
+
+.post-content pre {
+    background: rgba(255, 165, 0, 0.05);
+    padding: 1rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    margin: 1.5rem 0;
+}
+
+
+
+/* About page styles */
+.about-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.about-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.about-header h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.gradient-text {
+    background: linear-gradient(to right, var(--accent-color), var(--text-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Typing animation */
+.typing-container {
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    color: var(--secondary-text);
+}
+
+.cursor {
+    margin-left: 5px;
+    animation: blink 1s infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+.about-text {
+    margin-bottom: 4rem;
+    font-size: 1.2rem;
+    line-height: 1.8;
+}
+
+/* Interests section */
+.interests-section {
+    margin-bottom: 4rem;
+}
+
+.interests-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.interest-card {
+    padding: 2rem;
+    border-radius: 8px;
+    background: rgba(255, 165, 0, 0.05);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.interest-card:hover {
+    transform: translateY(-5px);
+    background: rgba(255, 165, 0, 0.1);
+}
+
+.interest-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    display: block;
+}
+
+/* Social links */
+.connect-section {
+    text-align: center;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.social-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    text-decoration: none;
+    color: var(--text-color);
+    background: rgba(255, 165, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.social-link:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 165, 0, 0.2);
+}
+
+.social-icon {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 768px) {
+    .interests-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .social-links {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+/* Update your existing about styles and add: */
+
+.tech-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.tech-pill {
+    padding: 0.75rem 1.5rem;
+    border-radius: 25px;
+    background: rgba(255, 165, 0, 0.1);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.tech-pill:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 165, 0, 0.2);
+}
+
+.tech-pill::before {
+    content: attr(data-tooltip);
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 0.5rem;
+    background: var(--bg-color);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 0.8rem;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.tech-pill:hover::before {
+    opacity: 1;
+}
+
+.tech-icon {
+    margin-right: 0.5rem;
+}
+
+.interest-timeline {
+    margin: 3rem 0;
+    position: relative;
+}
+
+.interest-timeline::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 2px;
+    background: var(--accent-color);
+    opacity: 0.3;
+}
+
+.timeline-item {
+    margin-left: 2rem;
+    padding: 1.5rem;
+    position: relative;
+    background: rgba(255, 165, 0, 0.05);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+}
+
+.timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -2.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    background: var(--accent-color);
+    border-radius: 50%;
+}
+
+.timeline-date {
+    font-size: 0.9rem;
+    color: var(--secondary-text);
+    margin-bottom: 0.5rem;
+    display: block;
+}
