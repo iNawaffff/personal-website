@@ -102,7 +102,6 @@
       <div class="skill-tags">
         <span class="skill-tag">Git</span>
         <span class="skill-tag">Docker</span>
-        <span class="skill-tag">Linux</span>
         <span class="skill-tag">VS Code</span>
       </div>
     </div>
@@ -114,22 +113,52 @@
     <!-- Activity Graph -->
     <section class="activity-section">
         <h2>Activity</h2>
-        <div id="activity-graph" class="activity-graph"></div>
+        <div id="activity-graph-container"></div>
     </section>
 
-    <!-- Recent Posts Section -->
-    <section class="recent-posts">
-        <h2>Recent Posts</h2>
-        <div class="posts-list">
-            {% for post in recent_posts %}
-            <article class="post-item">
-                <a href="{{ url_for('post', slug=post.slug) }}" class="post-title">{{ post.title }}</a>
-                <span class="post-date">{{ post.created_at.strftime('%B %d, %Y') }}</span>
-            </article>
-            {% endfor %}
-        </div>
-        <a href="{{ url_for('blog') }}" class="see-all">See all posts</a>
-    </section>
+     <!-- Recent Posts Section -->
+<section class="recent-section">
+    <div class="section-header">
+        <h2>&lt;recent_posts&gt;</h2>
+        <a href="{{ url_for('blog') }}" class="view-more">
+            view all
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14m-7-7 7 7-7 7"/>
+            </svg>
+        </a>
+    </div>
+    <div class="content-list">
+        {% for post in recent_posts %}
+        <a href="{{ url_for('post', slug=post.slug) }}" class="content-item">
+            <span class="content-title">{{ post.title }}</span>
+            <span class="content-date">{{ post.created_at.strftime('%d/%m/%y') }}</span>
+        </a>
+        {% endfor %}
+    </div>
+    <h2 class="section-close">&lt;/recent_posts&gt;</h2>
+</section>
+
+<!-- Recent Projects Section -->
+<section class="recent-section">
+    <div class="section-header">
+        <h2>&lt;recent_projects&gt;</h2>
+        <a href="{{ url_for('projects') }}" class="view-more">
+            view all
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M5 12h14m-7-7 7 7-7 7"/>
+            </svg>
+        </a>
+    </div>
+    <div class="content-list">
+        {% for project in recent_projects[:3] %}
+        <a href="{{ url_for('project', slug=project.slug) }}" class="content-item">
+            <span class="content-title">{{ project.title }}</span>
+            <span class="content-tag {{ project.status }}">{{ project.status }}</span>
+        </a>
+        {% endfor %}
+    </div>
+    <h2 class="section-close">&lt;/recent_projects&gt;</h2>
+</section>
 </div>
 
 <!-- Add activity graph script -->

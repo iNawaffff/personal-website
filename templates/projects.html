@@ -13,9 +13,10 @@
         {% for project in projects %}
         <article class="project-card">
             <div class="project-card-inner">
-                {% if project.status == 'in-progress' %}
-                <div class="project-status">In Progress</div>
-                {% endif %}
+                <!-- Modified status section to handle both states -->
+                <div class="project-status {{ project.status }}">
+                    {{ 'In Progress' if project.status == 'in-progress' else 'Completed' }}
+                </div>
 
                 <h3 class="project-title">{{ project.title }}</h3>
                 <p class="project-description">{{ project.short_description }}</p>
