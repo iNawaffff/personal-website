@@ -3,6 +3,7 @@
 
 {% block content %}
 <div class="about-container">
+    <!-- Hero Section -->
     <section class="about-header">
         <h1>Hey, I'm <span class="gradient-text">Nawaf</span>!</h1>
         <div class="typing-container">
@@ -11,10 +12,11 @@
         </div>
     </section>
 
-    <section class="about-content">
+    <!-- Introduction Section -->
+    <section class="about-intro">
         <div class="about-text">
             <p class="intro-text">
-                 A CS student and developer passionate about building things with code.
+                A CS student and developer passionate about building things with code.
                 Currently exploring ML, learning python in-depth, and sharing what I learn along the way.
             </p>
             <p>
@@ -22,44 +24,128 @@
                 and build in public.
             </p>
         </div>
+    </section>
 
-        <div class="tech-stack">
-            <h2>Tech I Work With</h2>
-            <div class="tech-grid">
-                <div class="tech-pill" data-tooltip="Python & ML Libraries">
-                    <span class="tech-icon">🐍</span> Python
-                </div>
-                <div class="tech-pill" data-tooltip="Web Dev">
-                    <span class="tech-icon">🌐</span> JavaScript
-                </div>
-                <div class="tech-pill" data-tooltip="Data & APIs">
-                    <span class="tech-icon">🗄️</span> SQL
-                </div>
-                <div class="tech-pill" data-tooltip="Deep Learning">
-                    <span class="tech-icon">🧠</span> PyTorch
-                </div>
-                <!-- Add more tech pills as needed -->
+    <!-- Skills Section -->
+    <section class="skills-section">
+        <h2 class="section-title">Tech I Work With</h2>
+        <div class="tech-grid">
+            <div class="tech-pill" data-tooltip="Python & ML Libraries">
+                <span class="tech-icon">🐍</span> Python
+            </div>
+            <div class="tech-pill" data-tooltip="Web Dev">
+                <span class="tech-icon">🌐</span> JavaScript
+            </div>
+            <div class="tech-pill" data-tooltip="Data & APIs">
+                <span class="tech-icon">🗄️</span> SQL
+            </div>
+            <div class="tech-pill" data-tooltip="Deep Learning">
+                <span class="tech-icon">🧠</span> PyTorch
             </div>
         </div>
+    </section>
 
-        <div class="current-interests">
-            <h2>Currently Into</h2>
-            <div class="interest-timeline">
-                <div class="timeline-item">
-                    <span class="timeline-date">Now</span>
-                    <div class="timeline-content">
-                        <h3>Machine Learning</h3>
-                        <p>Exploring deep learning and its applications</p>
+    <!-- Journey Section -->
+    <section class="journey-section">
+        <h2 class="section-title">Experience & Learning Path</h2>
+        <div class="interest-timeline">
+            <!-- Current -->
+            <div class="timeline-item active">
+                <div class="timeline-marker"></div>
+                <span class="timeline-date">Now</span>
+                <div class="timeline-content">
+                    <h3>Machine Learning</h3>
+                    <p>Exploring deep learning and its applications</p>
+                    <div class="timeline-details">
+                        <ul>
+                            <li>Neural Networks & Deep Learning</li>
+                            <li>GenAi</li>
+                            <li>Natural Language Processing</li>
+                        </ul>
                     </div>
                 </div>
-                <div class="timeline-item">
-                    <span class="timeline-date">2024</span>
-                    <div class="timeline-content">
-                        <h3>Web Development</h3>
-                        <p>Building with Flask and modern web tech</p>
+            </div>
+
+            <!-- Past -->
+            <div class="timeline-item">
+                <div class="timeline-marker"></div>
+                <span class="timeline-date">2024</span>
+                <div class="timeline-content">
+                    <h3>Web Development</h3>
+                    <p>Building mostly with Flask and modern web tech</p>
+                    <div class="timeline-details">
+                        <ul>
+                            <li>Full-stack Development</li>
+                            <li>Modern Frontend Design</li>
+                            <li>RESTful APIs</li>
+                        </ul>
                     </div>
                 </div>
-                <!-- Add more timeline items as needed -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section">
+        <h2 class="section-title">Let's Connect</h2>
+        <div class="terminal-contact">
+            <div class="terminal-header">
+                <div class="terminal-buttons">
+                    <div class="terminal-button red"></div>
+                    <div class="terminal-button yellow"></div>
+                    <div class="terminal-button green"></div>
+                </div>
+                <span class="terminal-title">contact.sh</span>
+            </div>
+            <div class="terminal-content">
+                <div class="terminal-line">
+                    <span class="prompt">$</span> echo "Let's connect!"
+                </div>
+                <div class="terminal-line output">
+                    Open to interesting projects, collaborations, and discussions about math, ML, or coding.
+                </div>
+
+                <div class="terminal-line">
+                    <span class="prompt">$</span> ./contact --show-options
+                </div>
+                <div class="terminal-options">
+                    <button class="terminal-btn copy-btn" onclick="copyEmail()">
+                        <i data-lucide="clipboard-copy" class="w-4 h-4"></i>
+                        <span class="btn-text">Copy email address</span>
+                    </button>
+                    <button class="terminal-btn send-btn" onclick="toggleForm()">
+                        <i data-lucide="send" class="w-4 h-4"></i>
+                        <span class="btn-text">Send message directly</span>
+                    </button>
+                </div>
+
+                <form id="contact-form" class="terminal-form hidden" onsubmit="submitForm(event)">
+                    <div class="input-group">
+                        <span class="prompt-arrow">→</span>
+                        <input type="text" name="name" placeholder="Your name" required>
+                    </div>
+                    <div class="input-group">
+                        <span class="prompt-arrow">→</span>
+                        <input type="email" name="email" placeholder="Your email" required>
+                    </div>
+                    <div class="input-group">
+                        <span class="prompt-arrow">→</span>
+                        <textarea name="message" placeholder="Your message" required rows="4"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="submit-btn">
+                            <i data-lucide="send" class="w-4 h-4"></i>
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+
+                <div class="terminal-line">
+                    <span class="prompt">$</span> cat response_time.txt
+                </div>
+                <div class="terminal-line output">
+                    Usually respond within 24-48 hours
+                </div>
             </div>
         </div>
     </section>

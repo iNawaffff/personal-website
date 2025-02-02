@@ -23,7 +23,6 @@ function initBinaryStream() {
 
         return stream;
     };
-
     // Add two identical streams
     streamElement.appendChild(createStream());
     streamElement.appendChild(createStream());

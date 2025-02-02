@@ -1,0 +1,28 @@
+{% extends "admin/base.html" %}
+
+{% block title %}{% if post %}Edit Post{% else %}New Post{% endif %}{% endblock %}
+
+{% block content %}
+<div class="content-header">
+    <h1>{% if post %}Edit Post{% else %}New Post{% endif %}</h1>
+</div>
+
+<form method="POST" class="admin-form">
+    <div class="form-group">
+        <label class="form-label">Title</label>
+        <input type="text" name="title" class="form-input" value="{{ post.title if post else '' }}" required>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Slug</label>
+        <input type="text" name="slug" class="form-input" value="{{ post.slug if post else '' }}" required>
+    </div>
+
+    <div class="form-group">
+        <label class="form-label">Content</label>
+        <textarea name="content" class="form-input" rows="10" required>{{ post.content if post else '' }}</textarea>
+    </div>
+
+    <button type="submit" class="form-button">{% if post %}Update{% else %}Create{% endif %} Post</button>
+</form>
+{% endblock %}

@@ -10,3 +10,6 @@ class Config:
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SECRET_KEY = os.environ.get('SECRET_KEY', 'your-secret-key-here')
+
+    ADMIN_USERNAME = os.environ.get('ADMIN_USERNAME', 'default_username')
+    ADMIN_PASSWORD = os.environ.get('ADMIN_PASSWORD', 'default_password')

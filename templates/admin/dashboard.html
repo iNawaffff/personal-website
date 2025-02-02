@@ -1,0 +1,28 @@
+{% extends "admin/base.html" %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-number">{{ stats.total_posts }}</div>
+        <div class="stat-label">Total Posts</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">{{ stats.total_projects }}</div>
+        <div class="stat-label">Projects</div>
+    </div>
+    <div class="stat-card">
+        <div class="stat-number">{{ stats.total_activities }}</div>
+        <div class="stat-label">Activities</div>
+    </div>
+</div>
+
+<div class="quick-actions">
+    <h2>Quick Actions</h2>
+    <div class="actions-grid">
+        <a href="{{ url_for('admin_new_post') }}" class="action-btn">New Post</a>
+        <a href="{{ url_for('admin_new_project') }}" class="action-btn">New Project</a>
+    </div>
+</div>
+{% endblock %}
