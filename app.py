@@ -118,7 +118,7 @@ def admin_projects():
 
 
 def create_slug(title):
-    # Remove special chars, convert spaces to hyphens, make lowercase
+    # remove any special chars, convert spaces to hyphens, make lowercase
     slug = ''.join(e for e in title if e.isalnum() or e.isspace())
     return slug.lower().replace(' ', '-')
 @app.route('/admin/project/new', methods=['GET', 'POST'])
@@ -140,22 +140,49 @@ def admin_new_project():
         return redirect(url_for('admin_projects'))
     return render_template('admin/project_form.html')
 
+
 @app.route('/admin/project/<int:id>/edit', methods=['GET', 'POST'])
 @admin_required
 def admin_edit_project(id):
     project = Project.query.get_or_404(id)
-    if request.method == 'POST':
-        project.title = request.form['title']
-        project.description = request.form['description']
-        project.tech_stack = request.form['tech_stack']
-        project.github_link = request.form['github_link']
-        project.demo_link = request.form['demo_link']
-        project.status = request.form['status']
-        db.session.commit()
-        flash('Project updated successfully!')
-        return redirect(url_for('admin_projects'))
-    return render_template('admin/project_form.html', project=project)
 
+    if request.method == 'POST':
+        try:
+            print("Form data received:", {
+                'title': request.form.get('title'),
+                'description': request.form.get('description'),
+                'tech_stack': request.form.get('tech_stack'),
+                'github_link': request.form.get('github_link'),
+                'demo_link': request.form.get('demo_link'),
+                'status': request.form.get('status')
+            })
+
+            project.title = request.form.get('title')
+            project.description = request.form.get('description')
+            project.tech_stack = request.form.get('tech_stack')
+
+            # Handle empty or 'None' string links
+            github_link = request.form.get('github_link')
+            demo_link = request.form.get('demo_link')
+            project.github_link = None if github_link in ['None', ''] else github_link
+            project.demo_link = None if demo_link in ['None', ''] else demo_link
+
+            project.status = request.form.get('status')
+            # Use create_slug instead of slugify
+            project.slug = create_slug(request.form.get('title'))
+
+            db.session.commit()
+            flash('Project updated successfully!')
+            return redirect(url_for('admin_projects'))
+
+        except Exception as e:
+            db.session.rollback()
+            import traceback
+            print("Error details:")
+            print(traceback.format_exc())
+            flash(f'Error updating project: {str(e)}')
+
+    return render_template('admin/project_form.html', project=project)
 @app.route('/admin/project/<int:id>/delete', methods=['POST'])
 @admin_required
 def admin_delete_project(id):

@@ -7,7 +7,7 @@
     font-family: 'Fira Code', monospace;
 }
 
-.admin-layout {z
+.admin-layout {
     display: flex;
     min-height: 100vh;
 }

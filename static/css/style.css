@@ -187,15 +187,23 @@ nav {
     }
 }
 
+.binary-note {
+    font-size: 0.9rem;
+    color: #7c7c7c;
+    text-align: left;
+    margin-top: -3rem;
+    font-style: italic;
+    max-width: 80%;
+}
 /* ====================
    STATS SECTION
    ==================== */
 .stats-section {
     display: flex;
-    justify-content: flex-start;  /* Changed from center */
+    justify-content: flex-start;
     gap: 4rem;
     margin: 4rem 0;
-    padding: 2rem 0;  /* Removed right padding */
+    padding: 2rem 0;
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -381,7 +389,7 @@ nav {
     position: relative;
 }
 
-/* GitHub's Contribution Colors - Dark Theme */
+/* GitHub's Contribution Colors */
 .activity-day.intensity-0 { background-color: #161b22; }
 .activity-day.intensity-1 { background-color: #0e4429; }
 .activity-day.intensity-2 { background-color: #006d32; }
@@ -526,7 +534,7 @@ nav {
     gap: 4rem;
 }
 
-/* Add line between sections */
+/* Adding line between sections */
 .recent-content:before {
     content: '';
     display: block;
@@ -1035,7 +1043,7 @@ nav {
     text-align: center;
 }
 
-/* Adding nice spacing for different content types */
+/* Added nice spacing for different content types */
 .post-content h2 {
     font-size: 1.8rem;
     margin: 3rem 0 1.5rem;
@@ -1266,7 +1274,7 @@ nav {
     position: relative;
     margin-bottom: 3rem;
     padding: 1.5rem;
-    background: rgba(20, 20, 20, 0.5);  /* Darker background */
+    background: var(--bg-color);  /* Darker background */
     border: 1px solid rgba(255, 165, 0, 0.1);
     border-radius: 8px;
     transition: all 0.3s ease;
