@@ -194,7 +194,7 @@ def admin_delete_project(id):
 
 @app.route('/')
 def home():
-    """Home page route - displays profile, stats, activity graph, and recent posts/projects."""
+    """home page route - displays profile, stats, activity graph, and recent posts and projects."""
     try:
         recent_posts = BlogPost.query.order_by(BlogPost.created_at.desc()).limit(3).all()
         recent_projects = Project.query.order_by(Project.created_at.desc()).limit(3).all()
@@ -234,12 +234,6 @@ def projects():
     return render_template('projects.html', projects=projects)
 
 
-@app.route('/project/<slug>')
-def project(slug):
-    project = Project.query.filter_by(slug=slug).first_or_404()
-    return render_template('project.html', project=project)
-
-
 @app.route('/about')
 def about():
     """About page."""
@@ -267,28 +261,26 @@ def send_email():
 
         msg.attach(MIMEText(body, 'plain'))
 
-        # Setup email server (Gmail example)
+
         server = smtplib.SMTP('smtp.gmail.com', 587)
         server.starttls()
 
-        # You'll need to set up an app password for Gmail
+
         email_password = os.getenv('EMAIL_PASSWORD')
         server.login('nawafkm01@gmail.com', email_password)
 
-        # Send email
+        # send email
         server.send_message(msg)
         server.quit()
 
         return jsonify({'success': True})
     except Exception as e:
-        print(f"Error sending email: {str(e)}")
+        print(f"error sending email: {str(e)}")
         return jsonify({'success': False, 'error': str(e)}), 500
 
 
 def get_github_contributions():
-    """
-    Fetch GitHub contributions data using GraphQL API starting from 2025
-    """
+
     query = """
     query {
         viewer {
@@ -344,7 +336,7 @@ def get_github_contributions():
 
 @app.route('/test-token')
 def test_token():
-    """Test endpoint to make sure token is loaded"""
+
     token = os.getenv("GITHUB_TOKEN")
     return jsonify({
         'token_exists': bool(token),
@@ -356,7 +348,7 @@ def test_token():
 @app.route('/api/activity-data')
 def activity_data():
     """
-    API endpoint that returns activity data in JSON format.
+    API endpoint that returns activity data in 'JSON' format.
     """
     try:
         print("Fetching GitHub contributions...")
@@ -374,7 +366,7 @@ def activity_data():
                 'posts': BlogPost.query.count() or 0
             }
 
-            # Get the contribution calendar from the correct path
+            # getting contribution calendar from the correct path
             contribution_calendar = github_data['data']['viewer']['contributionsCollection']['contributionCalendar']
 
             return jsonify({
@@ -407,9 +399,9 @@ def activity_data():
             }
         })
 
-# Run the application
+
 if __name__ == '__main__':
-    # Create database tables if they don't exist
+
     with app.app_context():
         db.create_all()
     app.run(debug=True, host='0.0.0.0', port=8080)

@@ -9,39 +9,56 @@
         <p class="projects-intro">Here are some things I've built to learn and explore.</p>
     </section>
 
-    <div class="projects-grid">
-        {% for project in projects %}
-        <article class="project-card">
-            <div class="project-card-inner">
-                <!-- Modified status section to handle both states -->
-                <div class="project-status {{ project.status }}">
-                    {{ 'In Progress' if project.status == 'in-progress' else 'Completed' }}
-                </div>
+    <div class="projects-container">
+        <!-- Projects Grid -->
+        <div class="projects-grid">
+            {% for project in projects %}
+                <article class="project-card {% if loop.index > 3 %}hidden-project{% endif %}">
+                    <div class="project-card-inner">
+                        <div class="project-status {{ project.status }}">
+                            {{ 'In Progress' if project.status == 'in-progress' else 'Completed' }}
+                        </div>
 
-                <h3 class="project-title">{{ project.title }}</h3>
-                <p class="project-description">{{ project.short_description or project.description}}</p>
+                        <h3 class="project-title">{{ project.title }}</h3>
+                        <p class="project-description">{{ project.short_description or project.description}}</p>
 
-                <div class="project-tech">
-                    {% for tech in project.tech_stack.split(',') %}
-                    <span class="tech-tag">{{ tech.strip() }}</span>
-                    {% endfor %}
-                </div>
+                        <div class="project-tech">
+                            {% for tech in project.tech_stack.split(',') %}
+                            <span class="tech-tag">{{ tech.strip() }}</span>
+                            {% endfor %}
+                        </div>
 
-                <div class="project-links">
-                    {% if project.github_link %}
-                    <a href="{{ project.github_link }}" target="_blank" class="project-link">
-                        GitHub
-                    </a>
-                    {% endif %}
-                    {% if project.demo_link %}
-                    <a href="{{ project.demo_link }}" target="_blank" class="project-link">
-                        Live Demo
-                    </a>
-                    {% endif %}
-                </div>
-            </div>
-        </article>
-        {% endfor %}
+                        <div class="project-links">
+                            {% if project.github_link %}
+                            <a href="{{ project.github_link }}" target="_blank" class="project-link">
+                                GitHub
+                            </a>
+                            {% endif %}
+                            {% if project.demo_link %}
+                            <a href="{{ project.demo_link }}" target="_blank" class="project-link">
+                                Live Demo
+                            </a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+
+        <!-- Show More Button (only show if there are more than 3 projects) -->
+        {% if projects|length > 3 %}
+        <div class="show-more-container">
+            <button id="show-more-btn" class="show-more-btn">
+                <span class="btn-text">Show More Projects</span>
+                <span class="remaining-count">({{ projects|length - 3 }} more)</span>
+            </button>
+        </div>
+        {% endif %}
     </div>
 </div>
+
+{% endblock %}
+
+{% block extra_js %}
+<script src="{{ url_for('static', filename='js/show-more-button.js') }}"></script>
 {% endblock %}

@@ -154,7 +154,10 @@
     </div>
     <div class="content-list">
         {% for project in recent_projects[:3] %}
-        <a href="{{ url_for('project', slug=project.slug) }}" class="content-item">
+        <a href="{{ project.demo_link if project.demo_link else url_for('projects') }}"
+        class="content-item"
+        {% if project.demo_link %}target="_blank"{% endif %} >
+
             <span class="content-title">{{ project.title }}</span>
             <span class="content-tag {{ project.status }}">{{ project.status }}</span>
         </a>
